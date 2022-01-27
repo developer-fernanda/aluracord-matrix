@@ -37,8 +37,9 @@ function Titulo(props){
 
 export default function PaginaInicial() {
     // const username = 'developer-fernanda';
-       const [username, setUsername] = React.useState('developer-fernanda');
+       const [username, setUsername] = React.useState('');
        const roteamento = useRouter();
+       const imagemInicial = './img/miranha-venom.jpg';
 
 
     return (
@@ -66,6 +67,42 @@ export default function PaginaInicial() {
               backgroundColor: appConfig.theme.colors.transparente.fundo,
             }}
           >
+      
+            {/* Photo Area */}
+            <Box
+              styleSheet={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                maxWidth: '250px',
+                padding: '16px',
+                flex: 1,
+                minHeight: '240px',
+              }}
+            >
+              <Image
+                styleSheet={{
+                  borderRadius: '50%',
+                  marginBottom: '16px',
+                }}
+                onError={function(event){
+                  event.target.src = imagemInicial
+                }}
+                src={username.length > 2 ? `https://github.com/${username}.png` : imagemInicial}
+              />
+              <Text
+                variant="body4"
+                styleSheet={{
+                  color: appConfig.theme.colors.neutrals[200],
+                  fontSize: '15px',
+                  padding: '3px 10px',
+                }}
+              >
+                {username}
+              </Text>
+            </Box>
+            {/* Photo Area */}
+
             {/* Formulário */}
             <Box
               as="form"
@@ -80,7 +117,7 @@ export default function PaginaInicial() {
                 width: { xs: '100%', sm: '50%' }, textAlign: 'center', marginBottom: '32px',
               }}
             >
-              <Titulo tag="h2">Olá, seja bem-vindo!</Titulo>
+              <Titulo tag="h2">Bem-vindos ao MiranhaVerso!</Titulo>
               <Text variant="body3" styleSheet={{ marginBottom: '32px', color: appConfig.theme.colors.neutrals[300] }}>
                 {appConfig.name}
               </Text>
@@ -100,8 +137,8 @@ export default function PaginaInicial() {
                   neutral: {
                     textColor: appConfig.theme.colors.neutrals[200],
                     mainColor: appConfig.theme.colors.neutrals[900],
-                    mainColorHighlight: appConfig.theme.colors.primary[900],
-                    backgroundColor: appConfig.theme.colors.neutrals[800],
+                    mainColorHighlight: appConfig.theme.colors.transparente.buttonRed,
+                    backgroundColor: appConfig.theme.colors.transparente.fundo,
                   },
                 }}
               />
@@ -125,47 +162,14 @@ export default function PaginaInicial() {
                 fullWidth
                 buttonColors={{
                   contrastColor: appConfig.theme.colors.neutrals["000"],
-                  mainColor: appConfig.theme.colors.primary[900],
+                  mainColor: appConfig.theme.colors.transparente.buttonRed,
                   mainColorLight: appConfig.theme.colors.primary[400],
-                  mainColorStrong: appConfig.theme.colors.primary[600],
+                  mainColorStrong: appConfig.theme.colors.transparente.buttonBlack,
                 }}
               />
             </Box>
             {/* Formulário */}
-  
-  
-            {/* Photo Area */}
-            <Box
-              styleSheet={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                maxWidth: '200px',
-                padding: '16px',
-                flex: 1,
-                minHeight: '240px',
-              }}
-            >
-              <Image
-                styleSheet={{
-                  borderRadius: '50%',
-                  marginBottom: '16px',
-                }}
-                
-                src={`https://github.com/${username}.png`}
-              />
-              <Text
-                variant="body4"
-                styleSheet={{
-                  color: appConfig.theme.colors.neutrals[200],
-                  fontSize: '15px',
-                  padding: '3px 10px',
-                }}
-              >
-                {username}
-              </Text>
-            </Box>
-            {/* Photo Area */}
+
           </Box>
         </Box>
       </>

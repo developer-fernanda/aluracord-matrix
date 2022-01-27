@@ -1,5 +1,5 @@
 {
-    "name": "MiranhaVerso",
+    "name": "Junte-se a nós!",
     "theme": {
         "colors": {
             "primary": {
@@ -30,7 +30,8 @@
             },
             "transparente":{
                 "fundo": "rgba(0, 0, 0, 0.7)",
-                "button": "rgba(128,0,0.9)"
+                "buttonRed": "#800000",
+                "buttonBlack": "#1C1C1C"
             }
             
         }
