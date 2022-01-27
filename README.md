@@ -2,7 +2,7 @@
 
 Projeto desenvolvido durante a Imersão React da Alura
 
-<a href="https://aluracord-matrix-40pon4egc-developer-fernanda.vercel.app/">Clique para visualizar</a>
+<a href="https://aluracord-matrix-bice.vercel.app/">Clique para visualizar</a>
 
 
 
