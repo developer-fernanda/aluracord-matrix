@@ -265,27 +265,26 @@ export default function ChatPage() {
                                     }}
                                     onClick={()=>{
                                        
-                                            let resposta = confirm('Deseja remover essa mensagem?')
-                                            if(resposta === true){
-                                                 supabaseClient
-                                                    .from('mensagens')
-                                                    .delete()
-                                                    .match({ id: mensagem.id }).then(() =>{
-                                                        let indice = listaDeMensagens.indexOf(mensagem);
-                                                        //1 parametro: Indice que vou manipular 
-                                                        //2 parametro: Quantidade de itens que seram manipulados a partir do primeiro paramentro 
-                                                        //3 parametro: Setar oq vc vai colocar no lugar (não obrigatório)
-                                                        listaDeMensagens.splice(indice,1)
-                                                        //... juntar um objeto/array com o outro
-                                                        setListaMensagens([...listaDeMensagens])
-                                                    })
-                                            }
-                                        
+                                        let resposta = confirm('Deseja remover essa mensagem?')
+                                        if(resposta === true){
+                                                supabaseClient
+                                                .from('mensagens')
+                                                .delete()
+                                                .match({ id: mensagem.id }).then(() =>{
+                                                    let indice = listaDeMensagens.indexOf(mensagem);
+                                                    //1 parametro: Indice que vou manipular 
+                                                    //2 parametro: Quantidade de itens que seram manipulados a partir do primeiro paramentro 
+                                                    //3 parametro: Setar oq vc vai colocar no lugar (não obrigatório)
+                                                    listaDeMensagens.splice(indice,1)
+                                                    //... juntar um objeto/array com o outro
+                                                    setListaMensagens([...listaDeMensagens])
+                                                })
+                                        }
                                     }}
                                 >
                                     {<RiDeleteBinLine/>}
                                 </Box>
-                                
+
                             : 
                             null }
                             </Box>
