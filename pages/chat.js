@@ -11,11 +11,6 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
     const [listaDeMensagens, setListaMensagens] = React.useState([]);
-    
-    // Sua lógica vai aqui
-
-    // ./Sua lógica vai aqui
-
 
     return (
         <Box
@@ -242,8 +237,25 @@ export default function ChatPage() {
                                         padding: '2px 15px',
                                         cursor: 'pointer'
                                     }}
+                                    onClick={()=>{
+                                        let resposta = confirm('Deseja remover essa mensagem?')
+                                        if(resposta === true){
+                                            let indice = listaDeMensagens.indexOf(mensagem);
+                                            //1 parametro: Indice que vou manipular 
+                                            //2 parametro: Quantidade de itens que seram manipulados a partir do primeiro paramentro 
+                                            //3 parametro: Setar oq vc vai colocar no lugar (não obrigatório)
+                                            listaDeMensagens.splice(indice,1)
+                                            //... juntar um objeto/array com o outro
+                                            setListaMensagens([...listaDeMensagens])
+                                        }
+                                        
+                                    }
+
+                                    }
                                 >
                                     {<RiDeleteBinLine/>}
+
+                                    
                                 </Box>
 
 
