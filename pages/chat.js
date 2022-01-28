@@ -265,7 +265,7 @@ export default function ChatPage() {
                                     }}
                                     onClick={()=>{
                                         let resposta = confirm('Deseja remover essa mensagem?')
-                                        if(resposta === true){
+                                        if(resposta === true && usuarioLogado == mensagem.de){
                                         supabaseClient
                                             .from('mensagens')
                                             .delete()
@@ -278,6 +278,8 @@ export default function ChatPage() {
                                                 //... juntar um objeto/array com o outro
                                                 setListaMensagens([...listaDeMensagens])
                                             })
+                                        }else{
+                                            window.alert('Você não tem permissão para excluir mensagens de outros usuários!')
                                         }
                                         
                                     }
