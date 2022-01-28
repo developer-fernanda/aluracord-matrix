@@ -15,3 +15,6 @@ Projeto desenvolvido durante a Imersão React da Alura
 
 - Imagem SM <br>
 ![Miranha](https://github.com/developer-fernanda/aluracord-matrix/blob/master/public/img/3.png)
+
+- Imagem CHAT <br>
+![Miranha](https://github.com/developer-fernanda/aluracord-matrix/blob/master/public/img/4.png)
