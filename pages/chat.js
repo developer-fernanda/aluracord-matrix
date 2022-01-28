@@ -139,7 +139,7 @@ export default function ChatPage() {
 
 
     function handleNovaMensagem(novaMensagem) {
-        const mensagem = {
+        const mensagemEnviada = {
             // id: listaDeMensagens.length + 1,
             de: usuarioLogado,
             texto: novaMensagem,
@@ -148,7 +148,7 @@ export default function ChatPage() {
         supabaseClient
             .from('mensagens')
             .insert([
-                mensagem
+                mensagemEnviada
             ])
             .then(( {data})=>{
                 console.log('Criando Mensagem: ', data);
@@ -195,7 +195,7 @@ export default function ChatPage() {
                 tag="ul"
                 styleSheet={{
                     overflowY: 'scroll',
-                    wordWrap: 'word-brek',
+                    wordWrap: 'break-word',
                     display: 'flex',
                     flexDirection: 'column-reverse',
                     flex: 1,
@@ -266,13 +266,18 @@ export default function ChatPage() {
                                     onClick={()=>{
                                         let resposta = confirm('Deseja remover essa mensagem?')
                                         if(resposta === true){
-                                            let indice = listaDeMensagens.indexOf(mensagem);
-                                            //1 parametro: Indice que vou manipular 
-                                            //2 parametro: Quantidade de itens que seram manipulados a partir do primeiro paramentro 
-                                            //3 parametro: Setar oq vc vai colocar no lugar (não obrigatório)
-                                            listaDeMensagens.splice(indice,1)
-                                            //... juntar um objeto/array com o outro
-                                            setListaMensagens([...listaDeMensagens])
+                                        supabaseClient
+                                            .from('mensagens')
+                                            .delete()
+                                            .match({ id: mensagem.id }).then(() =>{
+                                                let indice = listaDeMensagens.indexOf(mensagem);
+                                                //1 parametro: Indice que vou manipular 
+                                                //2 parametro: Quantidade de itens que seram manipulados a partir do primeiro paramentro 
+                                                //3 parametro: Setar oq vc vai colocar no lugar (não obrigatório)
+                                                listaDeMensagens.splice(indice,1)
+                                                //... juntar um objeto/array com o outro
+                                                setListaMensagens([...listaDeMensagens])
+                                            })
                                         }
                                         
                                     }
