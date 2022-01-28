@@ -5,6 +5,7 @@ import { BiSend } from 'react-icons/bi';
 import { FaShareSquare, FaSpider } from 'react-icons/fa';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { createClient } from '@supabase/supabase-js';
+import { useRouter } from 'next/router';
 
 
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzMyNTQ4NiwiZXhwIjoxOTU4OTAxNDg2fQ.AhfsDrs5EjNrd569rOAbXuKpbqYpZ40OLiJ8ilGdZOc';
@@ -15,6 +16,8 @@ const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
     const [listaDeMensagens, setListaMensagens] = React.useState([]);
+    const roteamento = useRouter();
+    const usuarioLogado = roteamento.query.username;
 
     React.useEffect(()=>{
         supabaseClient
@@ -136,21 +139,21 @@ export default function ChatPage() {
 
 
     function handleNovaMensagem(novaMensagem) {
-        const mensagemEnviadas = {
+        const mensagem = {
             // id: listaDeMensagens.length + 1,
-            de: 'developer-fernanda',
+            de: usuarioLogado,
             texto: novaMensagem,
         };
         
         supabaseClient
             .from('mensagens')
             .insert([
-                mensagemEnviadas
+                mensagem
             ])
             .then(( {data})=>{
                 console.log('Criando Mensagem: ', data);
                 setListaMensagens([
-                    data[1],
+                    data[0],
                     ...listaDeMensagens,
                 ]);
             })     
