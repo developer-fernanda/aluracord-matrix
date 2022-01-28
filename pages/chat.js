@@ -195,7 +195,7 @@ export default function ChatPage() {
                 tag="ul"
                 styleSheet={{
                     overflowY: 'scroll',
-                    wordWrap: 'break-word',
+                    wordBreak: 'break-word',
                     display: 'flex',
                     flexDirection: 'column-reverse',
                     flex: 1,
@@ -255,8 +255,8 @@ export default function ChatPage() {
                                         {(new Date().toLocaleDateString())}
                                     </Text>
                                 </Box>
-                             
-                               
+                                
+                            { usuarioLogado === mensagem.de ?
                                 <Box
                                     title={`Apagar mensagem`}
                                     styleSheet={{
@@ -264,30 +264,30 @@ export default function ChatPage() {
                                         cursor: 'pointer'
                                     }}
                                     onClick={()=>{
-                                        let resposta = confirm('Deseja remover essa mensagem?')
-                                        if(resposta === true && usuarioLogado == mensagem.de){
-                                        supabaseClient
-                                            .from('mensagens')
-                                            .delete()
-                                            .match({ id: mensagem.id }).then(() =>{
-                                                let indice = listaDeMensagens.indexOf(mensagem);
-                                                //1 parametro: Indice que vou manipular 
-                                                //2 parametro: Quantidade de itens que seram manipulados a partir do primeiro paramentro 
-                                                //3 parametro: Setar oq vc vai colocar no lugar (não obrigatório)
-                                                listaDeMensagens.splice(indice,1)
-                                                //... juntar um objeto/array com o outro
-                                                setListaMensagens([...listaDeMensagens])
-                                            })
-                                        }else{
-                                            window.alert('Você não tem permissão para excluir mensagens de outros usuários!')
-                                        }
+                                       
+                                            let resposta = confirm('Deseja remover essa mensagem?')
+                                            if(resposta === true){
+                                                 supabaseClient
+                                                    .from('mensagens')
+                                                    .delete()
+                                                    .match({ id: mensagem.id }).then(() =>{
+                                                        let indice = listaDeMensagens.indexOf(mensagem);
+                                                        //1 parametro: Indice que vou manipular 
+                                                        //2 parametro: Quantidade de itens que seram manipulados a partir do primeiro paramentro 
+                                                        //3 parametro: Setar oq vc vai colocar no lugar (não obrigatório)
+                                                        listaDeMensagens.splice(indice,1)
+                                                        //... juntar um objeto/array com o outro
+                                                        setListaMensagens([...listaDeMensagens])
+                                                    })
+                                            }
                                         
-                                    }
-
-                                    }
+                                    }}
                                 >
                                     {<RiDeleteBinLine/>}
                                 </Box>
+                                
+                            : 
+                            null }
                             </Box>
                            
                             {mensagem.texto}
