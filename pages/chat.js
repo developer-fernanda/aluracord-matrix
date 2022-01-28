@@ -4,13 +4,28 @@ import appConfig from '../config.json';
 import { BiSend } from 'react-icons/bi';
 import { FaShareSquare, FaSpider } from 'react-icons/fa';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import { createClient } from '@supabase/supabase-js';
 
 
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzMyNTQ4NiwiZXhwIjoxOTU4OTAxNDg2fQ.AhfsDrs5EjNrd569rOAbXuKpbqYpZ40OLiJ8ilGdZOc';
+const SUPABASE_URL = 'https://rjcsmpltyhswflalkqci.supabase.co';
+const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
     const [listaDeMensagens, setListaMensagens] = React.useState([]);
+
+    React.useEffect(()=>{
+        supabaseClient
+            .from('mensagens')
+            .select('*')
+            .order('id', { ascending: false})
+            .then(( {data})=>{
+                console.log('Dados da consulta', data);
+                setListaMensagens(data);
+            });
+    }, []);
 
     return (
         <Box
@@ -112,10 +127,7 @@ export default function ChatPage() {
                                     handleNovaMensagem(mensagem);
                                 }
                             }}
-
                         />
-
-
                     </Box>
                 </Box>
             </Box>
@@ -125,14 +137,24 @@ export default function ChatPage() {
 
     function handleNovaMensagem(novaMensagem) {
         const mensagemEnviadas = {
-            id: listaDeMensagens.length + 1,
+            // id: listaDeMensagens.length + 1,
             de: 'developer-fernanda',
             texto: novaMensagem,
         };
-        setListaMensagens([
-            mensagemEnviadas,
-            ...listaDeMensagens,
-        ]);
+        
+        supabaseClient
+            .from('mensagens')
+            .insert([
+                mensagemEnviadas
+            ])
+            .then(( {data})=>{
+                console.log('Criando Mensagem: ', data);
+                setListaMensagens([
+                    data[1],
+                    ...listaDeMensagens,
+                ]);
+            })     
+
         setMensagem('');
     }
 
@@ -175,8 +197,9 @@ export default function ChatPage() {
                     flexDirection: 'column-reverse',
                     flex: 1,
                     color: appConfig.theme.colors.neutrals["000"],
-                    marginBottom: '1px',
+                    marginBottom: '1px'
                 }}
+                
             >
                 {props.mensagens.map((mensagem) => {
                     return (
@@ -254,12 +277,7 @@ export default function ChatPage() {
                                     }
                                 >
                                     {<RiDeleteBinLine/>}
-
-                                    
                                 </Box>
-
-
-
                             </Box>
                            
                             {mensagem.texto}
