@@ -50,6 +50,10 @@ export default function ChatPage() {
             });
             escutaMensagemEmTempoReal((novaMensagem)=>{
                 console.log('Nova Mensagem', novaMensagem);
+                if(usuarioLogado != novaMensagem.de){
+                    let audio = new Audio(appConfig.soundMiranha);
+                    audio.play();
+                }
                 setListaMensagens((valorAtualDaLista)=>{
                     return[
                         novaMensagem,
