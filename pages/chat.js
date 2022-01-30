@@ -151,14 +151,6 @@ export default function ChatPage() {
 
                     <MessageList mensagens={listaDeMensagens} />
 
-                    {/* {listaDeMensagens.map((mensagemAtual) =>{
-                        return(
-                            <li key={mensagemAtual.id}>
-                                {mensagemAtual.de}: {mensagemAtual.texto}
-                            </li>
-                        )
-                    })} */}
-
                     <Box
                         as="form"
                         styleSheet={{
@@ -258,7 +250,7 @@ export default function ChatPage() {
                             styleSheet={{
                                 borderRadius: '5px',
                                 padding: '6px',
-                                marginBottom: '12px',
+                                marginBottom: '5px',
                                 wordWrap: 'word-brek',
                                 hover: {
                                     backgroundColor: appConfig.theme.colors.transparente.fundo,
@@ -270,7 +262,7 @@ export default function ChatPage() {
                                     marginBottom: '3px',
                                     //Display flex
                                     width: '100%', 
-                                    marginBottom: '16px', 
+                                    marginBottom: '10px', 
                                     display: 'flex', 
                                     alignItems: 'center', 
                                     justifyContent: 'space-between' 
