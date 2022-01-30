@@ -6,16 +6,36 @@ import { FaShareSquare, FaSpider } from 'react-icons/fa';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { createClient } from '@supabase/supabase-js';
 import { useRouter } from 'next/router';
+import {ButtonSendSticker} from '../src/components/ButtonSendSticker';
 
 
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzMyNTQ4NiwiZXhwIjoxOTU4OTAxNDg2fQ.AhfsDrs5EjNrd569rOAbXuKpbqYpZ40OLiJ8ilGdZOc';
 const SUPABASE_URL = 'https://rjcsmpltyhswflalkqci.supabase.co';
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+function escutaMensagemEmTempoReal(adcionaMensagem){
+    return supabaseClient
+        .from('mensagens')
+        .on('INSERT', ( respostaLive  ) =>{
+            adcionaMensagem(respostaLive.new);
+        })
+        .subscribe();
+}
 
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
-    const [listaDeMensagens, setListaMensagens] = React.useState([]);
+    const [listaDeMensagens, setListaMensagens] = React.useState([
+        // {
+        //     id:1,
+        //     de: 'developer-fernanda',
+        //     texto: ':sticker: https://www.alura.com.br/imersao-react-4/assets/figurinhas/Figurinha_2.png',
+        // },
+        // {
+        //     id:2,
+        //     de: 'peas',
+        //     texto: 'test',
+        // }
+    ]);
     const roteamento = useRouter();
     const usuarioLogado = roteamento.query.username;
 
@@ -28,7 +48,69 @@ export default function ChatPage() {
                 console.log('Dados da consulta', data);
                 setListaMensagens(data);
             });
+            escutaMensagemEmTempoReal((novaMensagem)=>{
+                console.log('Nova Mensagem', novaMensagem);
+                setListaMensagens((valorAtualDaLista)=>{
+                    return[
+                        novaMensagem,
+                        ...valorAtualDaLista,
+                    ]
+                });
+            });
     }, []);
+
+    function handleNovaMensagem(novaMensagem) {
+        const mensagemEnviada = {
+            // id: listaDeMensagens.length + 1,
+            de: usuarioLogado,
+            texto: novaMensagem,
+        };
+        
+        supabaseClient
+            .from('mensagens')
+            .insert([
+                mensagemEnviada
+            ])
+            .then(( {data})=>{
+                console.log('Criando Mensagem: ', data);
+                // setListaMensagens([
+                //     data[0],
+                //     ...listaDeMensagens,
+                // ]);
+            })     
+
+        setMensagem('');
+    }
+
+    function Header() {
+        return (
+            <>
+                <Box styleSheet={{ width: '100%', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
+                    <Text variant='heading5'>
+                         MIRANHA {< FaSpider />} CHAT
+                    </Text>
+                    <Button
+                        variant='tertiary'
+                        label={< FaShareSquare />}
+                        href="/"
+                        styleSheet={{
+                            borderRadius: '5px',
+                            minWidth: '42px',
+                            minHeight: '42px',
+                            backgroundColor: appConfig.theme.colors.transparente.buttonBlack,
+                            marginRight: '10px',
+                            color: appConfig.theme.colors.neutrals[200],
+                        }}
+                        buttonColors={{
+                            mainColorLight: appConfig.theme.colors.transparente.buttonRed,
+                        }}
+
+                    />
+                </Box>
+            </>
+        )
+    }
+
 
     return (
         <Box
@@ -102,12 +184,22 @@ export default function ChatPage() {
                             type="textarea"
                             styleSheet={{
                                 width: '100%',
-                                border: '0',
+                                height: '40px',
+                                // border: '0',
                                 resize: 'none',
-                                borderRadius: '5px',
-                                padding: '5px',
+                                borderRadius: '2px',
+                                // padding: '5px',
                                 backgroundColor: appConfig.theme.colors.transparente.fundo,
                                 color: appConfig.theme.colors.neutrals[200],
+                            }}
+
+                            
+                        />
+                        {/* CallBack */}
+                        <ButtonSendSticker 
+                            onStickerClick={(sticker) => {
+                                console.log('Salva esse sticker no banco', sticker);
+                                handleNovaMensagem(':sticker: ' + sticker)
                             }}
                         />
 
@@ -117,13 +209,18 @@ export default function ChatPage() {
                             type='submit'
                             styleSheet={{
                                 borderRadius: '5px',
+                                minWidth: '42px',
+                                minHeight: '42px',
+                                marginBottom: '14px',
+                                marginTop: '7px',
                                 backgroundColor: appConfig.theme.colors.transparente.buttonBlack,
-                                marginLeft: '10px',
+                                marginLeft: '5px',
                                 color: appConfig.theme.colors.neutrals[200],
+                                hover:{
+                                    backgroundColor: appConfig.theme.colors.transparente.buttonRed,
+                                }
                             }}
-                            buttonColors={{
-                                mainColorLight: appConfig.theme.colors.transparente.buttonRed,
-                            }}
+                          
                             onClick={(event) => {
                                 event.preventDefault();
                                 if (mensagem.length > 0) {
@@ -136,58 +233,7 @@ export default function ChatPage() {
             </Box>
         </Box>
     )
-
-
-    function handleNovaMensagem(novaMensagem) {
-        const mensagemEnviada = {
-            // id: listaDeMensagens.length + 1,
-            de: usuarioLogado,
-            texto: novaMensagem,
-        };
-        
-        supabaseClient
-            .from('mensagens')
-            .insert([
-                mensagemEnviada
-            ])
-            .then(( {data})=>{
-                console.log('Criando Mensagem: ', data);
-                setListaMensagens([
-                    data[0],
-                    ...listaDeMensagens,
-                ]);
-            })     
-
-        setMensagem('');
-    }
-
-    function Header() {
-        return (
-            <>
-                <Box styleSheet={{ width: '100%', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
-                    <Text variant='heading5'>
-                         MIRANHA {< FaSpider />} CHAT
-                    </Text>
-                    <Button
-                        variant='tertiary'
-                        label={< FaShareSquare />}
-                        href="/"
-                        styleSheet={{
-                            borderRadius: '5px',
-                            backgroundColor: appConfig.theme.colors.transparente.buttonBlack,
-                            marginRight: '10px',
-                            color: appConfig.theme.colors.neutrals[200],
-                        }}
-                        buttonColors={{
-                            mainColorLight: appConfig.theme.colors.transparente.buttonRed,
-                        }}
-
-                    />
-                </Box>
-            </>
-        )
-    }
-
+  
     function MessageList(props) {
         console.log(props);
         return (
@@ -239,6 +285,9 @@ export default function ChatPage() {
                                             display: 'inline-block',
                                             marginRight: '8px',
                                         }}
+                                        onError={(event) => {
+                                            event.target.src = appConfig.userImageDefault
+                                        }}
                                         src={`https://github.com/${mensagem.de}.png`}
                                     />
                                     <Text tag="strong">
@@ -284,12 +333,22 @@ export default function ChatPage() {
                                 >
                                     {<RiDeleteBinLine/>}
                                 </Box>
-
                             : 
                             null }
                             </Box>
-                           
-                            {mensagem.texto}
+                           {/* Declarativo */}
+                           {/* {mensagem.texto.startsWith(':sticker:').toString()} */}
+                           {mensagem.texto.startsWith(':sticker:') ? 
+                               (
+                                    <Image src={mensagem.texto.replace(':sticker:', '')}
+                                    styleSheet={{
+                                        width: '150px',
+                                    }}
+                                    />
+                                ) : (
+                                    mensagem.texto
+                               )}
+
                         </Text>
                     );
                 })}
