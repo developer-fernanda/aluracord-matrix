@@ -6,13 +6,24 @@ function GlobalStyle() {
           padding: 0;
           box-sizing: border-box;
           list-style: none;
-          // -ms-overflow-style: none;
         }
-        // ::-webkit-scrollbar {
-        //   display: none;
-        // }
         body {
           font-family: 'Open Sans', sans-serif;
+        }
+      
+        ::-webkit-scrollbar {
+          width: 10px;              /* width of the entire scrollbar */
+        }
+        
+        ::-webkit-scrollbar-track {
+          background:#800000;
+          border-radius: 3px;         /* color of the tracking area */
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          background-color: black;    /* color of the scroll thumb */
+          border-radius: 3px;       /* roundness of the scroll thumb */
+          border: 2px solid #800000;  /* creates padding around scroll thumb */
         }
         
         /* App fit Height */ 

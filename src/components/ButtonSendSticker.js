@@ -29,7 +29,7 @@ export function ButtonSendSticker(props) {
           }
           
         }}
-        label="🕷️"
+        label="🕸"
         onClick={() => setOpenState(!isOpen)}
       />
       {isOpen && (
