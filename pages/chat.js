@@ -181,10 +181,9 @@ export default function ChatPage() {
                             styleSheet={{
                                 width: '100%',
                                 height: '40px',
-                                // border: '0',
+                                color: appConfig.theme.colors.transparente.buttonRed,
                                 resize: 'none',
                                 borderRadius: '2px',
-                                // padding: '5px',
                                 backgroundColor: appConfig.theme.colors.transparente.fundo,
                                 color: appConfig.theme.colors.neutrals[200],
                             }}
@@ -214,6 +213,9 @@ export default function ChatPage() {
                                 color: appConfig.theme.colors.neutrals[200],
                                 hover:{
                                     backgroundColor: appConfig.theme.colors.transparente.buttonRed,
+                                },
+                                focus: {
+                                    backgroundColor: appConfig.theme.colors.transparente.buttonRed
                                 }
                             }}
                           
@@ -306,7 +308,10 @@ export default function ChatPage() {
                                     title={`Apagar mensagem`}
                                     styleSheet={{
                                         padding: '2px 15px',
-                                        cursor: 'pointer'
+                                        cursor: 'pointer', 
+                                        hover:{
+                                            color: appConfig.theme.colors.transparente.buttonRed,
+                                        }
                                     }}
                                     onClick={()=>{
                                        
