@@ -29,7 +29,8 @@
                 "999": "#080A0C"
             },
             "transparente":{
-                "fundo": "rgba(0, 0, 0, 0.85)",
+                "fundo": "rgba(0, 0, 0, 0.7)",
+                "fundoChat": "rgba(0, 0, 0, 0.9)",
                 "fundoSticker": "rgba(0, 0, 0, 2.0)",
                 "buttonRed": "#800000",
                 "buttonBlack": "#1C1C1C"
@@ -50,8 +51,7 @@
         "https://i.pinimg.com/originals/77/c0/2f/77c02ff48b49ab1d1324fb2075059031.png", 
         "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/0884de1a-806b-4111-a505-e199dba60ba4/defwaw8-281b6b9c-bd6e-4fed-89de-1a24a745ce94.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzA4ODRkZTFhLTgwNmItNDExMS1hNTA1LWUxOTlkYmE2MGJhNFwvZGVmd2F3OC0yODFiNmI5Yy1iZDZlLTRmZWQtODlkZS0xYTI0YTc0NWNlOTQucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.ETVeZSBazLgGG_F1BhUyqBxSGoJjIsn3Cb1oJTIbQKg", 
         "https://www.pngall.com/wp-content/uploads/11/Venom-Movie-PNG-Photo.png", 
-        "./img/6.png", 
-        "./img/7.png", 
+        "./img/6.png",
         "./img/8.png" 
         
   

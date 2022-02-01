@@ -120,7 +120,7 @@ export default function ChatPage() {
         <Box
             styleSheet={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                backgroundImage: `url(https://images.hdqwalls.com/download/spiderman-and-venom-4k-af-1366x768.jpg)`,
+                backgroundImage: `url(./img/background.jpg)`, 
                 backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 color: appConfig.theme.colors.neutrals['000']
             }}
@@ -132,7 +132,7 @@ export default function ChatPage() {
                     flex: 1,
                     boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
                     borderRadius: '5px',
-                    backgroundColor: appConfig.theme.colors.transparente.fundo,
+                    backgroundColor: appConfig.theme.colors.transparente.fundoChat,
                     height: '100%',
                     maxWidth: '95%',
                     maxHeight: '95vh',
@@ -181,13 +181,13 @@ export default function ChatPage() {
                             styleSheet={{
                                 width: '100%',
                                 height: '40px',
+                                padding: '10px',
                                 color: appConfig.theme.colors.transparente.buttonRed,
                                 resize: 'none',
                                 borderRadius: '2px',
                                 backgroundColor: appConfig.theme.colors.transparente.fundo,
                                 color: appConfig.theme.colors.neutrals[200],
                             }}
-
                             
                         />
                         {/* CallBack */}
