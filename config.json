@@ -38,7 +38,8 @@
             
         }
     },
-    "userImageDefault": "./img/5.png",
+    "userImageDefault": "./img/avatar.jpg",
+
     "soundMiranha": "./sound/Spider-Man.mp3",
         
     "stickers": [

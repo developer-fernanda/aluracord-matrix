@@ -204,6 +204,7 @@ export default function ChatPage() {
                             type='submit'
                             styleSheet={{
                                 borderRadius: '5px',
+                                position: 'absoluta',
                                 minWidth: '42px',
                                 minHeight: '42px',
                                 marginBottom: '14px',
