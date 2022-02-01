@@ -47,7 +47,7 @@ export default function PaginaInicial() {
               height: '100%',
               borderRadius: '5px', padding: '25px',
               boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-              backgroundColor: appConfig.theme.colors.transparente.fundo,
+              backgroundColor: appConfig.theme.colors.background.fundoBlack,
             }}
           >
       
@@ -126,9 +126,9 @@ export default function PaginaInicial() {
                 textFieldColors={{
                   neutral: {
                     textColor: appConfig.theme.colors.neutrals[200],
-                    mainColor: appConfig.theme.colors.neutrals[900],
-                    mainColorHighlight: appConfig.theme.colors.transparente.buttonRed,
-                    backgroundColor: appConfig.theme.colors.transparente.fundo,
+                    mainColor: appConfig.theme.colors.button.buttonBlackTransparente,
+                    mainColorHighlight: appConfig.theme.colors.button.buttonRed,
+                    backgroundColor: appConfig.theme.colors.button.buttonBlackTransparente,
                   },
                 }}
               />
@@ -139,9 +139,9 @@ export default function PaginaInicial() {
                 fullWidth
                 buttonColors={{
                   contrastColor: appConfig.theme.colors.neutrals["000"],
-                  mainColor: appConfig.theme.colors.transparente.buttonRed,
+                  mainColor: appConfig.theme.colors.button.buttonRed,
                   mainColorLight: appConfig.theme.colors.primary[400],
-                  mainColorStrong: appConfig.theme.colors.transparente.buttonBlack,
+                  mainColorStrong: appConfig.theme.colors.button.buttonBlackTransparente,
                 }}
               />
             </Box>

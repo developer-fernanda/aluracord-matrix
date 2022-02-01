@@ -25,15 +25,18 @@
                 "600": "#29333D",
                 "700": "#212931",
                 "800": "#181F25",
-                "900": "##8B0000",
+                "900": "#8B0000",
                 "999": "#080A0C"
             },
-            "transparente":{
-                "fundo": "rgba(0, 0, 0, 0.7)",
-                "fundoChat": "rgba(0, 0, 0, 0.9)",
-                "fundoSticker": "rgba(0, 0, 0, 2.0)",
+            "button":{
                 "buttonRed": "#800000",
-                "buttonBlack": "#1C1C1C"
+                "buttonRedTransparente": "rgba(128,0,0,0.5)",
+                "buttonBlack": "#1C1C1C", 
+                "buttonBlackTransparente": "rgba(0, 0, 0, 0.7)"
+            }, 
+            "background":{
+                "fundoBlack": "rgba(0, 0, 0, 0.7)",
+                "fundoRed": "rgba(128,0,0,0.5)"
             }
             
         }

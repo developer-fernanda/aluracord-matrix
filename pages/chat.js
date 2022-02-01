@@ -89,24 +89,24 @@ export default function ChatPage() {
     function Header() {
         return (
             <>
-                <Box styleSheet={{ width: '100%', marginBottom: '16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }} >
+                <Box styleSheet={{ width: '100%', display: 'flex',  alignItems: 'center', justifyContent: 'space-between' }} >
                     <Text variant='heading5'>
-                         MIRANHA {< FaSpider />} CHAT
+                         MIRANHA {< FaSpider size={20} />} CHAT
                     </Text>
                     <Button
                         variant='tertiary'
-                        label={< FaShareSquare />}
+                        label={< FaShareSquare size={18}  />}
                         href="/"
                         styleSheet={{
                             borderRadius: '5px',
                             minWidth: '42px',
                             minHeight: '42px',
-                            backgroundColor: appConfig.theme.colors.transparente.buttonBlack,
+                            backgroundColor: appConfig.theme.colors.button.buttonBlack,
                             marginRight: '10px',
                             color: appConfig.theme.colors.neutrals[200],
                         }}
                         buttonColors={{
-                            mainColorLight: appConfig.theme.colors.transparente.buttonRed,
+                            mainColorLight: appConfig.theme.colors.button.buttonRed,
                         }}
 
                     />
@@ -117,28 +117,41 @@ export default function ChatPage() {
 
 
     return (
+        //Background Imagem
         <Box
             styleSheet={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                backgroundImage: `url(./img/background.jpg)`, 
+                backgroundImage: `url(https://i2.wp.com/manualdosgames.com/wp-content/uploads/2021/09/Spiderman-2-1170x700.jpg)`, 
                 backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 color: appConfig.theme.colors.neutrals['000']
             }}
         >
+            
             <Box
+            //Background transparente
                 styleSheet={{
                     display: 'flex',
                     flexDirection: 'column',
                     flex: 1,
                     boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
                     borderRadius: '5px',
-                    backgroundColor: appConfig.theme.colors.transparente.fundoChat,
+                    backgroundColor: appConfig.theme.colors.background.fundoBlack,
                     height: '100%',
-                    maxWidth: '95%',
-                    maxHeight: '95vh',
+                    maxWidth: {
+                        md: '70%',
+                        sm: '95%',
+                        xs: '95%',
+                    },
+                    maxHeight: '93vh',
+                    padding: {
+                        md: '40px',
+                        sm: '20px',
+                        xs: '20px',
+                    },
                     padding: '32px',
                 }}
             >
+                {/* Cabeçalho */ }
                 <Header />
 
                 <Box
@@ -156,6 +169,7 @@ export default function ChatPage() {
                     <MessageList mensagens={listaDeMensagens} />
 
                     <Box
+                    //Array de Mensagens
                         as="form"
                         styleSheet={{
                             display: 'flex',
@@ -182,11 +196,11 @@ export default function ChatPage() {
                                 width: '100%',
                                 height: '40px',
                                 padding: '10px',
-                                color: appConfig.theme.colors.transparente.buttonRed,
                                 resize: 'none',
                                 borderRadius: '2px',
-                                backgroundColor: appConfig.theme.colors.transparente.fundo,
-                                color: appConfig.theme.colors.neutrals[200],
+                                border: '1px solid #800000',
+                                backgroundColor: appConfig.theme.colors.background.fundoBlack,
+                                color: appConfig.theme.colors.neutrals[200]
                             }}
                             
                         />
@@ -200,24 +214,16 @@ export default function ChatPage() {
 
                         <Button
                             variant='tertiary'
-                            label={< BiSend />}
+                            label={< BiSend size={23} />}
                             type='submit'
                             styleSheet={{
-                                borderRadius: '5px',
-                                position: 'absoluta',
-                                minWidth: '42px',
-                                minHeight: '42px',
-                                marginBottom: '14px',
-                                marginTop: '7px',
-                                backgroundColor: appConfig.theme.colors.transparente.buttonBlack,
-                                marginLeft: '5px',
+                                position: 'absolute',
+                                marginBottom: '6px',
+                                right: '60px',
                                 color: appConfig.theme.colors.neutrals[200],
-                                hover:{
-                                    backgroundColor: appConfig.theme.colors.transparente.buttonRed,
-                                },
-                                focus: {
-                                    backgroundColor: appConfig.theme.colors.transparente.buttonRed
-                                }
+                            }}
+                            buttonColors={{
+                                mainColorLight: 'none',
                             }}
                           
                             onClick={(event) => {
@@ -233,6 +239,7 @@ export default function ChatPage() {
         </Box>
     )
   
+    //Foto, nome e data das Mensagens
     function MessageList(props) {
         console.log(props);
         return (
@@ -251,6 +258,7 @@ export default function ChatPage() {
             >
                 {props.mensagens.map((mensagem) => {
                     return (
+                        //Bloco de mensagens
                         <Text
                             key={mensagem.id}
                             tag="li"
@@ -260,14 +268,14 @@ export default function ChatPage() {
                                 marginBottom: '5px',
                                 wordWrap: 'word-brek',
                                 hover: {
-                                    backgroundColor: appConfig.theme.colors.transparente.fundo,
+                                    backgroundColor: appConfig.theme.colors.background.fundoRed,
+                                    marginRight: '10px'
                                 }
                             }}
                         >
                             <Box
                                 styleSheet={{
                                     marginBottom: '3px',
-                                    //Display flex
                                     width: '100%', 
                                     marginBottom: '10px', 
                                     display: 'flex', 
@@ -277,22 +285,27 @@ export default function ChatPage() {
                             >
                                 <Box>
                                     <Image
+                                    //Foto do usuário
                                         styleSheet={{
-                                            width: '20px',
-                                            height: '20px',
+                                            width: '25px',
+                                            height: '25px',
                                             borderRadius: '50%',
                                             display: 'inline-block',
-                                            marginRight: '8px',
+                                            marginRight: '5px'
                                         }}
                                         onError={(event) => {
                                             event.target.src = appConfig.userImageDefault
                                         }}
                                         src={`https://github.com/${mensagem.de}.png`}
                                     />
-                                    <Text tag="strong">
+                                    
+                                    <Text tag="strong"
+                                    //Nome do usuário
+                                    >
                                         {mensagem.de}
                                     </Text>
                                     <Text
+                                    //Data da mensagem
                                         styleSheet={{
                                             fontSize: '10px',
                                             marginLeft: '8px',
@@ -309,10 +322,7 @@ export default function ChatPage() {
                                     title={`Apagar mensagem`}
                                     styleSheet={{
                                         padding: '2px 15px',
-                                        cursor: 'pointer', 
-                                        hover:{
-                                            color: appConfig.theme.colors.transparente.buttonRed,
-                                        }
+                                        cursor: 'pointer'
                                     }}
                                     onClick={()=>{
                                        
