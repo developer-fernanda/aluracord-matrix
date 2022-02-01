@@ -2,19 +2,13 @@
 
 Projeto desenvolvido durante a Imersão React da Alura
 
-<a href="https://aluracord-matrix-bice.vercel.app/">Clique para visualizar</a>
+<a href="https://aluracord-matrix-bice.vercel.app/"> Visualizar projeto </a>
 
-
-
-
-- Imagem XL
+### TELA DE LOGIN
 ![Miranha](https://github.com/developer-fernanda/aluracord-matrix/blob/master/public/img/1.png)
 
-- Imagem LG 
+
+#### CHAT 
 ![Miranha](https://github.com/developer-fernanda/aluracord-matrix/blob/master/public/img/2.png)
 
-- Imagem SM <br>
-![Miranha](https://github.com/developer-fernanda/aluracord-matrix/blob/master/public/img/3.png)
 
-- Imagem CHAT <br>
-![Miranha](https://github.com/developer-fernanda/aluracord-matrix/blob/master/public/img/4.png)
